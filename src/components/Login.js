@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
-import { Form, Input, PageHeader, Button} from 'antd';
-import { EyeInvisibleOutlined, ExclamationCircleOutlined, EyeTwoTone, UserOutlined } from '@ant-design/icons';
+import React, {useState} from "react";
+import {Form, Input, Button, Alert} from 'antd';
+import {EyeInvisibleOutlined, EyeTwoTone, UserOutlined} from '@ant-design/icons';
 
 import AuthService from "../services/auth.service";
 
@@ -22,7 +22,6 @@ const tailLayout = {
 const Login = (props) => {
     const [form] = Form.useForm();
     const [login, setLogin] = useState({});
-    const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
 
     /**
@@ -37,7 +36,6 @@ const Login = (props) => {
 
                 console.log(login);
                 setLogin(response.data);
-                setSubmitted(true);
                 form.resetFields();
                 props.history.push("/priority");
                 window.location.reload();
@@ -51,8 +49,8 @@ const Login = (props) => {
     /** Handle actions in the Form **/
 
     const handleInputChange = event => {
-        let { name, value } = event.target;
-        setLogin({ ...login, [name]: value });
+        let {name, value} = event.target;
+        setLogin({...login, [name]: value});
     };
 
     /** General Methods **/
@@ -64,7 +62,7 @@ const Login = (props) => {
 
     return (
         <div>
-            <Form {...layout} form={form} name="control-hooks" onFinish={onFinish} >
+            <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
                 <Form.Item
                     name="username"
                     label="User Name"
@@ -76,7 +74,7 @@ const Login = (props) => {
                 >
                     <Input
                         name="username"
-                        prefix={<UserOutlined className="site-form-item-icon" />}
+                        prefix={<UserOutlined className="site-form-item-icon"/>}
                         onChange={handleInputChange}
                         placeholder="User Name"
                     />
@@ -94,7 +92,7 @@ const Login = (props) => {
                         name="password"
                         onChange={handleInputChange}
                         placeholder="your password"
-                        iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                        iconRender={visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
                     />
                 </Form.Item>
                 <Form.Item {...tailLayout}>
@@ -103,6 +101,9 @@ const Login = (props) => {
                     </Button>
                 </Form.Item>
             </Form>
+            {error ? (
+                <Alert message="Error in the system. Try again later." type="error" showIcon closable/>
+            ) : null}
         </div>
     )
 };

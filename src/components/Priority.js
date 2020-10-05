@@ -1,22 +1,7 @@
 import React, {useState, useEffect} from "react";
-import {Form, Input, PageHeader, Button, Alert, Table} from 'antd';
+import {Alert, Table} from 'antd';
 
 import PriorityService from "../services/priority.service";
-
-const layout = {
-    labelCol: {
-        span: 2,
-    },
-    wrapperCol: {
-        span: 8,
-    },
-};
-const tailLayout = {
-    wrapperCol: {
-        offset: 2,
-        span: 8,
-    },
-};
 
 const initialPriorityListState = [
     {
@@ -26,7 +11,6 @@ const initialPriorityListState = [
 ];
 
 const Priority = (props) => {
-    const [form] = Form.useForm();
     const [priorityList, setPriorityList] = useState(initialPriorityListState);
     const [error, setError] = useState(false);
 
@@ -37,19 +21,19 @@ const Priority = (props) => {
 
     useEffect(() => {
         getAllPrioritiesMethod();
-    }, []);
+    },);
 
     /** Service methods **/
     const getAllPrioritiesMethod = () => {
         PriorityService.getAll()
             .then(response => {
-            setPriorityList(response.data);
-            console.log(response.data);
+                setPriorityList(response.data);
+                console.log(response.data);
             })
             .catch(err => {
                 console.log(err);
                 setError(err)
-                if (err.response.status == 401) {
+                if (err.response.status === 401) {
                     props.history.push("/login");
                     window.location.reload();
                 }
@@ -68,9 +52,9 @@ const Priority = (props) => {
 
     return (
         <div>
-            <Table rowKey={priority => priorityList.idPriority} columns={columns} dataSource={priorityList} />
+            <Table rowKey={priority => priorityList.idPriority} columns={columns} dataSource={priorityList}/>
             {error ? (
-                <Alert message="Error in the system. Try again later." type="error" showIcon closable />
+                <Alert message="Error in the system. Try again later." type="error" showIcon closable/>
             ) : null}
         </div>
     )
