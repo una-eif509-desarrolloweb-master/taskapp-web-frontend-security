@@ -45,7 +45,7 @@ const Signup = (props) => {
             .then(response => {
                 setUser(response.data);
                 form.resetFields();
-                setError(null);
+                setError(false);
             })
             .catch(err => {
                 console.log(err);
@@ -68,6 +68,7 @@ const Signup = (props) => {
     };
 
     const onReset = () => {
+        setUser(initialUserState);
         form.resetFields();
     };
 
@@ -160,6 +161,9 @@ const Signup = (props) => {
                     </Button>
                 </Form.Item>
             </Form>
+            {user.idUser > 0 ? (
+                <Alert message="User Saved" type="success" showIcon closable />
+            ) : null}
             {error ? (
                 <Alert message="Error in the system. Try again later." type="error" showIcon closable/>
             ) : null}
