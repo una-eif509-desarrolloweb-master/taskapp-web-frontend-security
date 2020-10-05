@@ -8,6 +8,7 @@ import AuthService from "./services/auth.service";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Priority from "./components/Priority";
+import Signup from "./components/Signup";
 
 function App() {
     const {Header, Content, Footer} = Layout;
@@ -36,6 +37,11 @@ function App() {
                                 Login
                             </Link>
                         </Menu.Item>
+                        <Menu.Item key="1">
+                            <Link to={"/signup"}>
+                                Sign up
+                            </Link>
+                        </Menu.Item>
                         <Menu.Item key="2">
                             <a href="/login" className="nav-link" onClick={logOut}>
                                 LogOut
@@ -46,14 +52,13 @@ function App() {
                 <Content style={{padding: '0 50px'}}>
                     <Breadcrumb style={{margin: '16px 0'}}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>List</Breadcrumb.Item>
-                        <Breadcrumb.Item>App</Breadcrumb.Item>
                     </Breadcrumb>
                     <div className="site-layout-content">
                         <Switch>
                             <Route exact path={["/", "/home"]} component={Home}/>
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/priority" component={Priority}/>
+                            <Route exact path="/signup" component={Signup}/>
                         </Switch>
                     </div>
                 </Content>

@@ -21,7 +21,6 @@ const remove = id => {
     return http.delete(`/priorities/${id}`, { headers: authHeader() });
 };
 
-
 export default {
     getAll,
     get,
