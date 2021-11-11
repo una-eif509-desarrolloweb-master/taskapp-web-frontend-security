@@ -5,9 +5,10 @@ import 'antd/dist/antd.css';
 import './App.css';
 
 import AuthService from "./services/auth.service";
+
 import Login from "./components/Login";
 import Home from "./components/Home";
-import Priority from "./components/Priority";
+import PriorityList from "./components/PriorityList";
 import Signup from "./components/Signup";
 
 function App() {
@@ -37,12 +38,17 @@ function App() {
                                 Login
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="1">
+                        <Menu.Item key="2">
+                            <Link to={"/priority"}>
+                                Priority
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item key="3">
                             <Link to={"/signup"}>
                                 Sign up
                             </Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item key="4">
                             <a href="/login" className="nav-link" onClick={logOut}>
                                 LogOut
                             </a>
@@ -57,12 +63,12 @@ function App() {
                         <Switch>
                             <Route exact path={["/", "/home"]} component={Home}/>
                             <Route exact path="/login" component={Login}/>
-                            <Route exact path="/priority" component={Priority}/>
+                            <Route exact path="/priority" component={PriorityList}/>
                             <Route exact path="/signup" component={Signup}/>
                         </Switch>
                     </div>
                 </Content>
-                <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{textAlign: 'center'}}>www.mikeguzman.info</Footer>
             </Layout>
         </Router>
     );

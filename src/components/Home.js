@@ -14,7 +14,7 @@ const Home = (props) => {
 
     return (
         <div>
-            HOME
+            Welcome to Universidad Nacional de Costa Rica
         </div>
     )
 };
