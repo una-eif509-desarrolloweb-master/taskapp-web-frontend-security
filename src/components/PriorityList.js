@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
-import {Alert, Table} from 'antd';
+import {Table} from 'antd';
 
 import PriorityService from "../services/priority.service";
 
